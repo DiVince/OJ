@@ -11,7 +11,7 @@ struct node
 struct vector
 {
 	double x = 1;
-	double y = 1;
+	double y = 0;
 };
 
 int main()
@@ -40,7 +40,7 @@ int main()
 			if ((P.x*Q.y - P.y*Q.x) > 0)
 			{
 				convex = 0;
-				cout << i;
+				cout << i << ' ';
 			}
 		}
 		// END
@@ -50,5 +50,6 @@ int main()
 		delete[] p;
 		cout << endl;
 	}
+	system("pause");
 	return 0;
 }
