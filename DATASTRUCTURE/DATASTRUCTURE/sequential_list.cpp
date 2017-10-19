@@ -23,7 +23,7 @@ public:
 	bool IsFull();
 	bool SetElement(const int &pos, const ElementType &value);
 	bool Insert(const int &pos, const ElementType &value);
-	bool add(const ElementType &value);
+	bool Add(const ElementType &value);
 	bool Delete(const int &pos);
 	void ClearList();
 	ElementType GetElement(const int &pos);
@@ -36,14 +36,15 @@ struct node {
 	int y;
 };
 
+#if 0
 int main()
 {
 	struct node b;
 	
 	SeqLIST<int> a(10);
 	cout << a.IsEmpty() << endl;
-	a.add(0);
-	a.add(1);
+	a.Add(0);
+	a.Add(1);
 	a.Insert(2, 2);
 	cout << a.PriorElement(1) << endl;
 	cout << a.GetElement(1) << endl;
@@ -53,6 +54,7 @@ int main()
 	system("pause");
 	return 0;
 }
+#endif
 
 template<class ElementType>
 bool SeqLIST<ElementType>::IsEmpty()
@@ -94,7 +96,7 @@ bool SeqLIST<ElementType>::Insert(const int &pos, const ElementType &value)
 }
 
 template<class ElementType>
-bool SeqLIST<ElementType>::add(const ElementType & value)
+bool SeqLIST<ElementType>::Add(const ElementType & value)
 {
 	if (IsFull())
 	{
