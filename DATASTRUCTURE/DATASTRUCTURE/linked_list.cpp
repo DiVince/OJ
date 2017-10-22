@@ -1,3 +1,4 @@
+/* linked list without head node */
 #include<iostream>
 using namespace std;
 
@@ -49,6 +50,15 @@ int main()
 	cout << a.GetElement(1) << endl;
 	cout << a.PriorElement(1) << endl;
 	cout << a.NextElement(1) << endl;
+	a.Delete(1);
+	cout << a.GetElement(1) << endl;
+	a.ClearList();
+	cout << a.IsEmpty() << endl;
+	cout << "len: " << a.ListLength() << endl;
+	//cout << a.PriorElement(1) << endl;
+	//cout << a.NextElement(1) << endl;
+	cout << a.GetElement(1) << endl;
+
 	return 0;
 }
 #endif
@@ -76,7 +86,7 @@ bool LinkList<ElementType>::IsEmpty()
 template<class ElementType>
 bool LinkList<ElementType>::SetElement(const int & pos, const ElementType & data)
 {
-	if (pos > ListLength() || pos < 0)
+	if (pos >= ListLength() || pos < 0)
 	{
 		cout << "set element: out of range" << endl;
 		return false;
@@ -90,7 +100,7 @@ bool LinkList<ElementType>::SetElement(const int & pos, const ElementType & data
 	}
 	if (pr == NULL)
 	{
-		cout << "set element: no element exists" << endl;
+		cout << "set element: element does not exist" << endl;
 		return false;
 	}
 	pr->data = data;
@@ -105,8 +115,12 @@ bool LinkList<ElementType>::Insert(const int & pos, const ElementType & data)
 		cout << "insert: out of range" << endl;
 		return false;
 	}
-
 	Node<ElementType>* p = new Node<ElementType>;
+	if (!p)
+	{
+		cout << "insert: new error" << endl;
+		return false;
+	}
 	p->data = data;
 	if (pos == 0)
 	{
@@ -131,7 +145,10 @@ bool LinkList<ElementType>::Add(const ElementType & data)
 {
 	Node<ElementType>* p = new Node<ElementType>;
 	if (!p)
+	{
+		cout << "insert: new error" << endl;
 		return false;
+	}
 	p->data = data;
 	p->next = NULL;
 	Node<ElementType>*pr = this->head;
@@ -190,14 +207,20 @@ void LinkList<ElementType>::ClearList()
 		p = pr;
 		pr = pr->next;
 		delete p;
-		p = NULL;
 	}
+	p = NULL;
+	pr = NULL;
 	head = NULL;
 }
 
 template<class ElementType>
 ElementType LinkList<ElementType>::GetElement(const int & pos)
 {
+	if (pos > ListLength() || pos < 0)
+	{
+		cout << "get element: out of range" << endl;
+		exit(0);
+	}
 	int index = 0;
 	Node<ElementType>* pr = head;
 	while (index < pos)
@@ -216,6 +239,11 @@ ElementType LinkList<ElementType>::GetElement(const int & pos)
 template<class ElementType>
 ElementType LinkList<ElementType>::PriorElement(const int & current_pos)
 {
+	if (current_pos - 1 >= ListLength() || current_pos < 0)
+	{
+		cout << "prior element: out of range" << endl;
+		exit(0);
+	}
 	int index = 0;
 	Node<ElementType>* pr = head;
 	while (index < current_pos - 1)
@@ -234,6 +262,11 @@ ElementType LinkList<ElementType>::PriorElement(const int & current_pos)
 template<class ElementType>
 ElementType LinkList<ElementType>::NextElement(const int & current_pos)
 {
+	if (current_pos + 1 > ListLength() || current_pos < 0)
+	{
+		cout << "next element: out of range" << endl;
+		exit(0);
+	}
 	int index = 0;
 	Node<ElementType>* pr = head;
 	while (index < current_pos + 1)

@@ -38,6 +38,7 @@ public:
 	ElementType NextElement(const int &current_pos);
 };
 
+
 #if 0
 int main()
 {
@@ -46,7 +47,11 @@ int main()
 	a.SetElement(0, 1);
 	a.Insert(1, 1);
 	a.Add(1);
+
 	a.Insert(1, 2);
+
+	a.Insert(1,2);
+
 	a.Add(3);
 	cout << "len: " << a.ListLength() << endl;
 	cout << a.GetElement(0) << endl;
@@ -54,6 +59,8 @@ int main()
 	cout << a.GetElement(2) << endl;
 	cout << "prior: " << a.PriorElement(1) << endl;
 	cout << "next: " << a.NextElement(1) << endl;
+	cout <<"prior: "<< a.PriorElement(1) << endl;
+	cout <<"next: "<< a.NextElement(1) << endl;
 	a.Delete(1);
 	cout << a.GetElement(1) << endl;
 	a.ClearList();
