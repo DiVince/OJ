@@ -104,7 +104,10 @@ int main()
 	for (int count = 0; count < l; count++)
 	{
 		cin >> i >> j >> v;
-		a.Insert(i, j, v);
+		if (v != 0)
+		{
+			a.Insert(i, j, v);
+		}
 	}
 	a.ColTraversal();
 	a.APlusAT();
