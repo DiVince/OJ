@@ -2,9 +2,13 @@
 #include<cmath>
 using namespace std;
 
-void wavelet(int L, double* p, double* q)
+
+
+void wavelet(int L, double* p)
 {
 	int n = pow(2, L);
+	int m = n / 2;
+	double*q = new double[m];
 	/*
 	cout << "L: " << L << endl;
 	for (int i = 0; i < n; i++)
@@ -13,17 +17,17 @@ void wavelet(int L, double* p, double* q)
 	}
 	cout << endl << endl;
 	*/
-	for (int i = 0; i < n / 2; i++)
+	for (int i = 0; i < m; i++)
 	{
-		q[i] = (p[2 * i] + p[2 * i + 1]) / 2;
+		q[i] = -(p[2 * i] - p[2 * i + 1]) / 2;
 	}
-	for (int i = n / 2; i < n; i++)
+	for (int i = 0; i < m; i++)
 	{
-		q[i] = -(p[2 * (i - (n / 2))] - p[2 * (i - (n / 2)) + 1]) / 2;
+		p[i] = (p[2 * i] + p[2 * i + 1]) / 2;
 	}
-	for (int i = 0; i < n; i++)
+	for (int i = m; i < n; i++)
 	{
-		p[i] = q[i];
+		p[i] = q[i - m];
 	}
 	/*
 	for (int i = 0; i < n; i++)
@@ -32,6 +36,7 @@ void wavelet(int L, double* p, double* q)
 	}
 	cout << endl << endl;
 	*/
+	delete[] q;
 }
 
 int main()
@@ -43,13 +48,13 @@ int main()
 	l = L;
 	n = pow(2, L);
 	double* p = new double[n];
-	double* q = new double[n];
+	//double* q = new double[n];
 	for (int i = 0; i < n; i++)
 		cin >> p[i];
 	//cout << endl << endl;
 	while (l >= 1)
 	{
-		wavelet(l, p, q);
+		wavelet(l, p);
 		l--;
 	}
 	for (int i = 0; i < n; i++)
