@@ -361,7 +361,10 @@ void OrtList<ElementType>::APlusAT()
 				{
 					if ((A->j) == (AT->i))
 					{
-						cout << A->i << " " << A->j << " " << (A->data) + (AT->data) << '\n';
+						if ((A->data) + (AT->data))
+						{
+							cout << A->i << " " << A->j << " " << (A->data) + (AT->data) << '\n';
+						}
 						A = A->next_col;
 						AT = AT->next_row;
 					}
