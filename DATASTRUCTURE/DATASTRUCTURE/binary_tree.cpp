@@ -54,6 +54,7 @@ private:
 	Node<ElementType>* root;
 };
 
+#if 0
 int main()
 {
 	BinTree<int> bt;
@@ -84,6 +85,7 @@ int main()
 
 	return 0;
 }
+#endif
 
 template<class ElementType>
 void BinTree<ElementType>::PreOrderTraverse(Node<ElementType>* e)
